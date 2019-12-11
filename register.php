@@ -76,9 +76,9 @@
                                         
                                    
                                      <br>
-                                     <a href="login.html" class="btn btn-primary ">Register</a>
+                                     <a href="login.php" class="btn btn-primary ">Register</a>
                                     <hr />
-                                    Already a user ? <a href="login.html" >click here </a>
+                                    Already a user ? <a href="login.php" >click here </a>
                                     <br><br>
                                     </form>
                             </div>

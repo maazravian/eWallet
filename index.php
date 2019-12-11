@@ -28,7 +28,7 @@
 
             <div class="header-right">
 
-                <a href="login.html" class="btn btn-danger" title="Logout"><b style="vertical-align: center;">  Logout  </b><i class="fa fa-exclamation-circle fa-2x"></i></a>
+                <a href="login.php" class="btn btn-danger" title="Logout"><b style="vertical-align: center;">  Logout  </b><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
             </div>
         </nav>
@@ -49,7 +49,7 @@
 
                     </li>
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                        <a class="active-menu" href="index.php"><i class="fa fa-dashboard "></i>Dashboard</a>
                     </li>
                        
                       

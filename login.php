@@ -39,9 +39,9 @@
                                         </div>
                                    
                                      
-                                     <a href="index.html" class="btn btn-primary ">Login Now</a>
+                                     <a href="index.php" class="btn btn-primary ">Login Now</a>
                                     <hr />
-                                    Not register ? <a href="register.html" >click here </a>
+                                    Not register ? <a href="register.php" >click here </a>
                                     </form>
                             </div>
                            
