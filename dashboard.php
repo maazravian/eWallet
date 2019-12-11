@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="dashboard.html">eWallet</a>
+                <a class="navbar-brand" href="dashboard.php">eWallet</a>
             </div>
 
             <div class="header-right">
@@ -51,7 +51,9 @@
                     <li>
                         <a class="active-menu" href="dashboard.php"><i class="fa fa-dashboard "></i>Dashboard</a>
                     </li>
-                       
+                       <li>
+                        <a  href="store.php"><i class="fa fa-shopping-cart "></i>Store</a>
+                    </li>
                       
                     </ul>
 
@@ -65,7 +67,7 @@
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="main-box mb-red">
+                        <div class="main-box btn-primary">
                             <a href="#" data-toggle="modal" data-target="#moneyModal">
                                 <i class="fa fa-bolt fa-5x"></i>
                                 <h5>Money Transfer</h5>
@@ -109,7 +111,7 @@
                         </div>
 
                     <div class="col-md-4">
-                        <div class="main-box mb-dull">
+                        <div class="main-box btn-danger">
                             <a href="#" data-toggle="modal" data-target="#billModal">
                                 <i class="fa fa-plug fa-5x"></i>
                                 <h5>Bill Payment</h5>
@@ -169,7 +171,7 @@
 
 
                     <div class="col-md-4">
-                        <div class="main-box mb-pink">
+                        <div class="main-box btn-success">
                             <a href="#" data-toggle="modal" data-target="#balanceModal">
                                 <i class="fa fa-dollar fa-5x"></i>
                                 <h5>2,000 Balance</h5>
@@ -223,7 +225,7 @@
                         </div>
 
                     <div class="col-md-4">
-                        <div class="main-box mb-red">
+                        <div class="main-box  btn-primary">
                             <a href="#" data-toggle="modal" data-target="#withdrawModal">
                                 <i class="fa fa-money fa-5x"></i>
                                 <h5>Withdraw Money</h5>
@@ -266,7 +268,7 @@
                         </div>
 
                     <div class="col-md-4">
-                        <div class="main-box mb-dull">
+                        <div class="main-box btn-danger">
                             <a href="#" data-toggle="modal" data-target="#depositModal">
                                 <i class="fa fa-money fa-5x"></i>
                                 <h5>Deposit Money</h5>
@@ -309,7 +311,7 @@
                         </div>
 
                     <div class="col-md-4">
-                        <div class="main-box mb-pink">
+                        <div class="main-box btn-success">
                             <a href="store.php">
                                 <i class="fa fa-shopping-cart fa-5x"></i>
                                 <h5>Store</h5>
