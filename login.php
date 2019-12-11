@@ -40,6 +40,7 @@
                                    
                                      
                                      <a href="dashboard.php" class="btn btn-primary ">Login Now</a>
+                                     <a href="dashboard.php" class="btn btn-primary ">Login as Admin</a>
                                     <hr />
                                     Not register ? <a href="register.php" >click here </a>
                                     </form>
