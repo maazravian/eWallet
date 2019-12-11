@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">eWallet</a>
+                <a class="navbar-brand" href="dashboard.html">eWallet</a>
             </div>
 
             <div class="header-right">
@@ -49,7 +49,7 @@
 
                     </li>
                     <li>
-                        <a class="active-menu" href="index.php"><i class="fa fa-dashboard "></i>Dashboard</a>
+                        <a class="active-menu" href="dashboard.php"><i class="fa fa-dashboard "></i>Dashboard</a>
                     </li>
                        
                       
@@ -189,15 +189,26 @@
 
                               <!-- Modal body -->
                               <div class="modal-body">
-                                Enter Details
+                                Your current Balance Details
 
                                         <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <input type="text" class="form-control"  placeholder="Enter Reciever's Email" />
+                                             <h4 type="text"   >2,000</h4>
                                         </div>
                                         <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
-                                             <input type="number" class="form-control"  placeholder="Enter Amount" />
+                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
+                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
+                                        </div>
+                                        <div class="form-group input-group">
+                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
+                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
+                                        </div>
+                                        <div class="form-group input-group">
+                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
+                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
+                                        </div>
+                                        <div class="form-group input-group">
+                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
+                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
                                         </div>
                               </div>
 
@@ -236,7 +247,7 @@
 
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <input type="text" class="form-control"  placeholder="Enter Reciever's Email" />
+                                             <input type="text" class="form-control"  placeholder="Enter retailer's Email" />
                                         </div>
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
@@ -279,7 +290,7 @@
 
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <input type="text" class="form-control"  placeholder="Enter Reciever's Email" />
+                                             <input type="text" class="form-control"  placeholder="Enter Retailer's Email" />
                                         </div>
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
@@ -299,7 +310,7 @@
 
                     <div class="col-md-4">
                         <div class="main-box mb-pink">
-                            <a href="#">
+                            <a href="store.php">
                                 <i class="fa fa-shopping-cart fa-5x"></i>
                                 <h5>Store</h5>
                             </a>
