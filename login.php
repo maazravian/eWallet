@@ -12,6 +12,8 @@
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
+    
+
 </head>
 <body style="background-color: #E2E2E2;">
     <div class="container">
@@ -35,14 +37,14 @@
                                         </div>
                                                                               <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control"  placeholder="Your Password" />
+                                            <input type="password" class="form-control"  placeholder="Your Password"  />
                                         </div>
                                    
                                      
-                                     <a href="dashboard.php" class="btn btn-primary ">Login Now</a>
-                                     <a href="dashboardAdmin.php" class="btn btn-primary ">Login as Admin</a>
+                                     <a href="dashboard.php" class="btn btn-primary ">Login</a>
+                                                                         <a href="dashboardAdmin.php" class="btn btn-primary ">Login as Admin</a>
                                     <hr />
-                                    Not register ? <a href="register.php" >click here </a>
+                                    Not registered ? <a href="register.php" >click here </a>
                                     </form>
                             </div>
                            
