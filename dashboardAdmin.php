@@ -13,7 +13,9 @@
     <!--CUSTOM MAIN STYLES-->
     <link href="assets/css/custom.css" rel="stylesheet" />
 
-    
+   <?php  
+   		include("dbConnection.php");
+   ?>
 
 </head>
 <body>
@@ -44,9 +46,21 @@
                             <img src="assets/img/user.png" class="img-thumbnail" />
 
                             <div class="inner-text">
-                                Jhon Deo Alex
-                            <br />
-                                <small>Last Activity : 12/04/19 </small>
+                                <?php
+									
+									$sql = "SELECT first_name, last_name FROM admin where adminid=900";
+									
+									$result = $conn->query($sql);
+
+									if ($result->num_rows > 0) {
+									    // output data of each row
+									    while($row = $result->fetch_assoc()) {
+									        echo $row["first_name"]. " " . $row["last_name"];
+									    }
+									}
+									else if($result->num_rows==0)
+										echo "Default Name"; ?>
+									                                
                             </div>
                         </div>
 
@@ -92,33 +106,33 @@
                                 <div class="form-group input-group">
                                              <h4 type="text"   ></h4>
                                         </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy user</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy user</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy user</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy user</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        
+
+                                        <?php 
+
+                                        $sql = "SELECT first_name, last_name FROM user u";
+										$result = $conn->query($sql);
+
+										if ($result->num_rows > 0) {
+											    // output data of each row
+											    while($row = $result->fetch_assoc()) {
+											        echo "<div class='form-group input-group'>
+		                                             <span class='input-group-addon'><i class='fa fa-user'  ></i></span>
+		                                             <p type='text' class='form-control'  >" . $row["first_name"] . " " . 
+		                                             $row["last_name"] . "</p>
+		                                             <span class='input-group-addon'><i class='fa fa-remove'  ></i></span>
+		                                        	</div>";
+											    }
+											} else {
+											    echo "0 results";
+											}
+
+                                        ?>
+
                               </div>
 
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Transfer</button>
                               </div>
 
                             </div>
@@ -226,22 +240,29 @@
                                         <div class="form-group input-group">
                                              <h4 type="text"   ></h4>
                                         </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
+
+                                        <?php 
+
+                                        $sql = "SELECT transaction_id, userid ,transaction_type FROM transactions";
+										$result = $conn->query($sql);
+
+										if ($result->num_rows > 0) {
+											    // output data of each row
+											    while($row = $result->fetch_assoc()) {
+											        echo " <div class='form-group input-group'>
+                                             		<span class='input-group-addon'><i class='fa fa-history'  ></i></span>
+                                             		<p type='text' class='form-control'  >" . 
+                                             		$row["transaction_id"]." ".$row["userid"]." ".$row["transaction_type"]
+                                             		 . "</p></div>";
+											    }
+											} else {
+											    echo "0 results";
+											}
+
+                                        ?>
+
+                                       
+                                      
                               </div>
 
                               <!-- Modal footer -->

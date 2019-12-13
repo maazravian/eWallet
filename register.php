@@ -12,6 +12,10 @@
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
+    <?php 
+    include("dbConnection.php");
+    ?>
+
 </head>
 <body style="background-color: #E2E2E2;">
     <div class="container">
