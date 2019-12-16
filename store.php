@@ -70,50 +70,32 @@
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
-                	<div class="col-md-4">
-                        <div class="main-box btn-primary">
-                            <a href="#" data-toggle="modal" data-target="#Modal">
-                                <img class="img-responsive" src="assets/items/item1.jpg">
-                                <h5>Item name</h5>
-                                <p>this is item description which is usually 4 to 5 long in length so dummy description is also long</p>
-                                <h5>2000 Rs</h5>
+                	
 
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box btn-primary">
-                            <a href="#" data-toggle="modal" data-target="#Modal">
-                                <img class="img-responsive" src="assets/items/item1.jpg">
-                                <h5>Item name</h5>
-                                <p>this is item description which is usually 4 to 5 long in length so dummy description is also long</p>
-                                <h5>2000 Rs</h5>
+                        <?php 
 
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box btn-primary">
-                            <a href="#" data-toggle="modal" data-target="#Modal">
-                                <img class="img-responsive" src="assets/items/item1.jpg">
-                                <h5>Item name</h5>
-                                <p>this is item description which is usually 4 to 5 long in length so dummy description is also long</p>
-                                <h5>2000 Rs</h5>
+                          $sql = "SELECT name,description,price from item";
+                                        $result = $conn->query($sql);
 
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box btn-primary">
-                            <a href="#" data-toggle="modal" data-target="#Modal">
-                                <img class="img-responsive" src="assets/items/item1.jpg">
-                                <h5>Item name</h5>
-                                <p>this is item description which is usually 4 to 5 long in length so dummy description is also long</p>
-                                <h5>2000 Rs</h5>
+                                        if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<div class='col-md-4'>
+                                                    <div class='main-box btn-primary'>
+                                                    <a href='#' data-toggle='modal' data-target='#Modal'>
+                                                    <img class='img-responsive' src='assets/items/item1.jpg'>
+                                                    <h5>". $row["name"] ."</h5>
+                                                    <p>". $row["description"] . "</p>
+                                                    <h5>" .  $row["price"] ."  Rs</h5>
+                                                    </a>
+                                                    </div>
+                                                    </div>  ";
+                                               }
+                                          } else {
+                                            echo "0 results";
+                                        }
 
-                            </a>
-                        </div>
-                    </div>
+                         ?>
                     
 
 
@@ -128,7 +110,20 @@
 
                               <!-- Modal Header -->
                               <div class="modal-header">
-                                <h4 class="modal-title">Item name</h4>
+                                <h4 class="modal-title"> <?php 
+
+                                        $sql = "SELECT name from item ";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo $row["name"];
+                                               }
+                                          } else {
+                                            echo "Default Name";
+                                        }
+
+                         ?></h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                               </div>
 

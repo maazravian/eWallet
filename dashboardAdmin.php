@@ -48,7 +48,7 @@
                             <div class="inner-text">
                                 <?php
 									
-									$sql = "SELECT first_name, last_name FROM admin where adminid=900";
+									$sql = "SELECT first_name, last_name FROM admin where adminid=901";
 									
 									$result = $conn->query($sql);
 
@@ -133,10 +133,10 @@
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-<<<<<<< HEAD
+
                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Transfer</button>
-=======
->>>>>>> 2a9960a2be8a1589c5b6ec0e50b185391417362f
+
+
                               </div>
 
                             </div>
@@ -247,7 +247,7 @@
 
                                         <?php 
 
-                                        $sql = "SELECT transaction_id, userid ,transaction_type FROM transactions";
+                                        $sql = "SELECT Transactions.transaction_id, user.first_name , user.last_name , Transactions.transaction_type FROM transactions,user  where Transactions.userid=user.userid";
 										$result = $conn->query($sql);
 
 										if ($result->num_rows > 0) {
@@ -255,8 +255,8 @@
 											    while($row = $result->fetch_assoc()) {
 											        echo " <div class='form-group input-group'>
                                              		<span class='input-group-addon'><i class='fa fa-history'  ></i></span>
-                                             		<p type='text' class='form-control'  >" . 
-                                             		$row["transaction_id"]." ".$row["userid"]." ".$row["transaction_type"]
+                                             		<p type='text' class='form-control'  >" . "Transaction Id  ".
+                                             		$row["transaction_id"].":: User Name ".$row["first_name"]. " " . $row["last_name"].":: Transaction type ".$row["transaction_type"]
                                              		 . "</p></div>";
 											    }
 											} else {
@@ -300,27 +300,27 @@
                               <!-- Modal body -->
                               <div class="modal-body">
 
-                                      
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-shopping-cart"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy item</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-shopping-cart"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy item</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-shopping-cart"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy item</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-shopping-cart"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy item</p>
-                                             <span class="input-group-addon"><i class="fa fa-remove"  ></i></span>
-                                        </div>
+                                      <?php 
+
+                                        $sql = "SELECT name, price FROM item";
+										$result = $conn->query($sql);
+
+										if ($result->num_rows > 0) {
+											    // output data of each row
+											    while($row = $result->fetch_assoc()) {
+											        echo "<div class='form-group input-group'>
+                                             <span class='input-group-addon'><i class='fa fa-shopping-cart'  ></i></span>
+                                             <p type='text' class='form-control'  >" . $row["name"] . "   $" . $row["price"] ."</p>
+                                             <span class='input-group-addon'><i class='fa fa-remove'  ></i></span>
+                                        	 </div>";
+											    }
+											} else {
+											    echo "0 results";
+											}
+
+                                        ?>
+                                        
+                                       
                               </div>
 
                               <!-- Modal footer -->
