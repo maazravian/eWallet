@@ -32,6 +32,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `ADMINID` int(3),
+  `email` varchar(24) NOT NULL unique,
   `FIRST_NAME` varchar(14) NOT NULL,
   `LAST_NAME` varchar(14) NOT NULL,
   `PASSWORD` varchar(15) NOT NULL,
@@ -41,12 +42,10 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `admin` (`ADMINID`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD`, `AGE`) VALUES
-(900, 'ZAIN', 'SARFRAZ', '123456', 20),
-(901, 'ARSLAN', 'AWAN', '123456', 27),
-(902, 'NOUMAN', 'LATIF', '123456', 29),
-(903, 'MAAZ', 'JAVED', '123456', 20),
-(904, 'HAMZA', 'ADNAN', '123456', 20);
+INSERT INTO `admin` (`ADMINID`, `email`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD`, `AGE`) VALUES
+(900, 'zain.noob99@gmail.com','ZAIN', 'SARFRAZ', 'admin', 20),
+(903, 'abc@gmail.com','MAAZ', 'JAVED', '123456', 20);
+
 
 
 
@@ -78,7 +77,9 @@ INSERT INTO `user` (`USERID`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD`, `AGE`, `DAT
 (104, 'AHMAD', 'SOHAIL', '123456', 19, '0000-00-00 00:00:00', 40000,  'NO'),
 (105, 'NEHAL', 'NASIR', '123456', 20, '0000-00-00 00:00:00', 1000,  'YES'),
 (106, 'BASIT', 'ALI', '123456', 20, '0000-00-00 00:00:00', 1000,  'NO'),
-(107, 'WAQAS', 'MAJEED', '123456', 24, '0000-00-00 00:00:00', 5000,  'NO');
+(107, 'WAQAS', 'MAJEED', '123456', 24, '0000-00-00 00:00:00', 5000,  'NO'),
+(109, 'Zain', 'Sarfraz', 'zain', 20, '0000-00-00 00:00:00', 5000,  'NO')
+;
 
 
 -- --------------------------------------------------------
@@ -107,7 +108,9 @@ INSERT INTO `contact_info` (`CONTACT_INFO_ID`, `USER_ID`,`ADDRESS`, `EMAIL`, `PH
 (209, 104,'STREET # 8,HOUSE # 77 LAHORE', 'WWW@GMAIL.COM', 31192049),
 (210, 105,'STREET # 6,HOUSE # 72 LAHORE', 'NEHAL@GMAIL.COM', 31192049),
 (211, 106,'STREET # 23,HOUSE # 24 LAHORE', 'BASIT@GMAIL.COM', 31192049),
-(212, 107,'STREET # 12,HOUSE # 23 LAHORE', 'WAQAS@GMAIL.COM', 31192049);
+(212, 107,'STREET # 12,HOUSE # 23 LAHORE', 'WAQAS@GMAIL.COM', 31192049),
+(213, 109,'STREET # 4,HOUSE # 4 Daroghawala LAHORE', 'zain.noob99@gmail.com', 03349792529);
+
 
 -- --------------------------------------------------------
 

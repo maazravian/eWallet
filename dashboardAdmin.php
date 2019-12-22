@@ -15,6 +15,12 @@
 
    <?php  
    		include("dbConnection.php");
+       session_start();
+    if($_SESSION["userId"]==false)
+    {
+      header('location:loginAdmin.php');
+    }
+
    ?>
 
 </head>
@@ -33,7 +39,7 @@
 
             <div class="header-right">
 
-                <a href="login.php" class="btn btn-danger" title="Logout"><b style="vertical-align: center;">  Logout  </b><i class="fa fa-exclamation-circle fa-2x"></i></a>
+                <a href="logout.php" class="btn btn-danger" title="Logout"><b style="vertical-align: center;">  Logout  </b><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
             </div>
         </nav>
@@ -47,8 +53,8 @@
 
                             <div class="inner-text">
                                 <?php
-									
-									$sql = "SELECT first_name, last_name FROM admin where adminid=901";
+									           $adminid = $_SESSION["userId"];
+									$sql = "SELECT first_name, last_name FROM admin where adminid='$adminid'";
 									
 									$result = $conn->query($sql);
 
@@ -58,8 +64,7 @@
 									        echo $row["first_name"]. " " . $row["last_name"];
 									    }
 									}
-									else if($result->num_rows==0)
-										echo "Default Name"; ?>
+								 ?>
 									                                
                             </div>
                         </div>

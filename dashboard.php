@@ -15,6 +15,12 @@
 
     <?php 
     include("dbConnection.php");
+    session_start();
+    if($_SESSION["userId"]==false)
+    {
+      header('location:login.php');
+    }
+
     ?>
 
 </head>
@@ -33,7 +39,7 @@
 
             <div class="header-right">
 
-                <a href="login.php" class="btn btn-danger" title="Logout"><b style="vertical-align: center;">  Logout  </b><i class="fa fa-exclamation-circle fa-2x"></i></a>
+                <a href="logout.php" class="btn btn-danger" title="Logout"><b style="vertical-align: center;">  Logout  </b><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
             </div>
         </nav>
@@ -46,7 +52,23 @@
                             <img src="assets/img/user.png" class="img-thumbnail" />
 
                             <div class="inner-text">
-                                Jhon Deo Alex
+                                <?php
+                                $userid = $_SESSION["userId"];
+                                $sql = "SELECT first_name, last_name FROM user where userid='$userid'";
+                  
+                               $result = $conn->query($sql);
+
+                              if ($result->num_rows > 0) {
+                                  // output data of each row
+                                 while($row = $result->fetch_assoc()) {
+                                    echo $row["first_name"]. " " . $row["last_name"];
+                                  }
+                               }
+                             
+
+                             
+
+                                ?>
                             <br />
                                 <small>Last Activity : 12/04/19 </small>
                             </div>

@@ -1,12 +1,9 @@
-﻿
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>eWallet - Login</title>
+    <title>eWallet - Admin Login</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -15,9 +12,9 @@
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
-    <?php
-    include("dbConnection.php");
-    include("loginSession.php");
+    <?php 
+        include("dbConnection.php");
+        include("loginSessionAdmin.php");
     ?>
 
 </head>
@@ -25,7 +22,7 @@
     <div class="container">
         <div class="row text-center " style="padding-top:100px;">
             <div class="col-md-12">
-                <h1>eWallet</h1>
+                <h1>Admin Panel</h1>
             </div>
         </div>
          <div class="row ">
@@ -54,9 +51,7 @@
 
 
                                     <hr />
-                                    Not registered ? <a href="register.php" >click here </a>
-                                    <hr />
-                                    Are you an Admin ? <a href="loginAdmin.php" >click here </a>
+                                    Are you a User ? <a href="login.php" >click here </a>
                                     </form>
                             </div>
                            
