@@ -70,7 +70,79 @@
 
                                 ?>
                             <br />
-                                <small>Last Activity : 12/04/19 </small>
+                                <small>Last Activity 
+                                  <?php
+
+                                  // query to select last entry from transactions table
+
+                                  $userid = $_SESSION["userId"];
+                                $sql = "SELECT transaction_type FROM transactions
+                                 where userid='$userid'
+                                  order by transaction_id desc limit 1";
+                  
+                               $result = $conn->query($sql);
+
+                              if ($row = $result->fetch_assoc()) {
+                                  // output data of each row
+                                $temp = $_SESSION["userId"];
+                                if($row["transaction_type"]=="BILL")
+                                {
+
+                                  $sql = "SELECT max(payment_date) from bill_payment where userId = '$temp'";
+                                  $result = $conn->query($sql);
+                                  if($row = $result->fetch_assoc())
+                                  {
+                                    echo $row["max(payment_date)"];
+                                  }
+
+                                }else if($row["transaction_type"]=="MONEYT")
+                                {
+
+                                   $sql = "SELECT max(transfer_date) from money_transfer where senderId = '$temp'";
+                                  $result = $conn->query($sql);
+                                  if($row = $result->fetch_assoc())
+                                  {
+                                    echo $row["max(transfer_date)"];
+                                  }
+
+                                }else if($row["transaction_type"]=="WITHDRAW")
+                                {
+
+                                   $sql = "SELECT max(payment_date) from withdraw_deposit where userId = '$temp'";
+                                  $result = $conn->query($sql);
+                                  if($row = $result->fetch_assoc())
+                                  {
+                                    echo $row["max(payment_date)"];
+                                  }
+
+                                }else if($row["transaction_type"]=="DEPOSIT")
+                                {
+
+                                   $sql = "SELECT max(payment_date) from withdraw_deposit where USERID = '$temp'";
+                                  $result = $conn->query($sql);
+                                  if($row = $result->fetch_assoc())
+                                  {
+                                    echo $row["max(payment_date)"];
+                                  }
+                                }else if($row["transaction_type"]=="PURCHASE")
+                                {
+                                   $sql = "SELECT max(date_purchased) from PURCHASES where userId = '$temp'";
+                                  $result = $conn->query($sql);
+                                  if($row = $result->fetch_assoc())
+                                  {
+                                    echo $row["max(date_purchased)"];
+                                  }
+                                }
+
+                               }
+                               else
+                               {
+                                echo "No Recent Activity";
+                               }
+
+                                  ?>
+
+                                </small>
                             </div>
                         </div>
 
@@ -201,7 +273,25 @@
                         <div class="main-box btn-success">
                             <a href="#" data-toggle="modal" data-target="#balanceModal">
                                 <i class="fa fa-dollar fa-5x"></i>
-                                <h5>2,000 Balance</h5>
+                                <h5>
+                                  <?php
+
+                                  $userid = $_SESSION["userId"];
+                                $sql = "SELECT Balance FROM user where userid='$userid'";
+                  
+                               $result = $conn->query($sql);
+
+                              if ($result->num_rows > 0) {
+                                  // output data of each row
+                                 while($row = $result->fetch_assoc()) {
+                                    echo $row["Balance"]. " Rs." ;
+                                  }
+                               }
+                             
+
+                                  ?>
+
+                                </h5>
                             </a>
                         </div>
                     </div>
@@ -221,30 +311,55 @@
                                 Your current Balance Details
 
                                         <div class="form-group input-group">
-                                             <h4 type="text"   >2,000</h4>
+                                             <h4 type="text"   >
+                                               
+                                              <?php
+
+                                  $userid = $_SESSION["userId"];
+                                $sql = "SELECT Balance FROM user where userid='$userid'";
+                  
+                               $result = $conn->query($sql);
+
+                              if ($result->num_rows > 0) {
+                                  // output data of each row
+                                 while($row = $result->fetch_assoc()) {
+                                    echo $row["Balance"]. " Rs." ;
+                                  }
+                               }
+                             
+
+                                    ?>
+
+                                             </h4>
                                         </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
-                                        <div class="form-group input-group">
-                                             <span class="input-group-addon"><i class="fa fa-history"  ></i></span>
-                                             <p type="text" class="form-control"  >This is a dummy transaction history</p>
-                                        </div>
+
+                                        <?php
+
+                                  $userid = $_SESSION["userId"];
+                                $sql = "SELECT transaction_type FROM transactions where userid='$userid'";
+                  
+                               $result = $conn->query($sql);
+
+                              if ($result->num_rows > 0) {
+                                  // output data of each row
+                                 while($row = $result->fetch_assoc()) {
+                                  echo "<div class='form-group input-group'>
+                                             <span class='input-group-addon'><i class='fa fa-history'  ></i></span>
+                                             <p type='text' class='form-control'  > ". $row["transaction_type"]. "</p>
+                                        </div>";
+                               }
+                             }
+                               else
+                                echo "No History....";
+                             
+                                
+                                  ?>
+                                        
                               </div>
 
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Transfer</button>
                               </div>
 
                             </div>

@@ -114,7 +114,7 @@
 
                                         <?php 
 
-                                        $sql = "SELECT first_name, last_name FROM user u";
+                                        $sql = "SELECT first_name, last_name,balance FROM user u";
 										$result = $conn->query($sql);
 
 										if ($result->num_rows > 0) {
@@ -123,7 +123,7 @@
 											        echo "<div class='form-group input-group'>
 		                                             <span class='input-group-addon'><i class='fa fa-user'  ></i></span>
 		                                             <p type='text' class='form-control'  >" . $row["first_name"] . " " . 
-		                                             $row["last_name"] . "</p>
+		                                             $row["last_name"] .  "  ::  " . $row["balance"] . " Rs. </p>
 		                                             <span class='input-group-addon'><i class='fa fa-remove'  ></i></span>
 		                                        	</div>";
 											    }
