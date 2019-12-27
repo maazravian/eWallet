@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `ADMINID` int(3),
+  `ADMINID` int(3) AUTO_INCREMENT,
   `email` varchar(24) NOT NULL unique,
   `FIRST_NAME` varchar(14) NOT NULL,
   `LAST_NAME` varchar(14) NOT NULL,
@@ -56,7 +56,7 @@ INSERT INTO `admin` (`ADMINID`, `email`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD`, 
 --
 
 CREATE TABLE `user` (
-  `USERID` int(3) ,
+  `USERID` int(3) AUTO_INCREMENT,
   `FIRST_NAME` varchar(14) NOT NULL,
   `LAST_NAME` varchar(14) NOT NULL,
   `PASSWORD` varchar(15) NOT NULL,
@@ -89,7 +89,7 @@ INSERT INTO `user` (`USERID`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD`, `AGE`, `DAT
 --
 
 CREATE TABLE `contact_info` (
-  `CONTACT_INFO_ID` int(3),
+  `CONTACT_INFO_ID` int(3) AUTO_INCREMENT,
   `USER_ID` int(3),
   `ADDRESS` varchar(50) NOT NULL,
   `EMAIL` varchar(30) DEFAULT NULL,
@@ -119,7 +119,7 @@ INSERT INTO `contact_info` (`CONTACT_INFO_ID`, `USER_ID`,`ADDRESS`, `EMAIL`, `PH
 --
 
 CREATE TABLE `item` (
-  `ITEM_ID` int(3),
+  `ITEM_ID` int(3) AUTO_INCREMENT,
   `NAME` varchar(50) DEFAULT NULL,
   `DESCRIPTION` varchar(200) DEFAULT NULL,
   `PRICE` int(5) DEFAULT NULL,
@@ -145,7 +145,7 @@ INSERT INTO `item` (`ITEM_ID`, `NAME`, `DESCRIPTION`, `PRICE`, `PICTURE_LOCATION
 --
 
 CREATE TABLE `bill_type` (
-  `BILL_TYPE_ID` int(3),
+  `BILL_TYPE_ID` int(3) AUTO_INCREMENT,
   `BILL_NAME` varchar(20) DEFAULT NULL,
   `COMPANY_NAME` varchar(20) DEFAULT NULL,
 
@@ -172,7 +172,7 @@ INSERT INTO `bill_type` (`BILL_TYPE_ID`, `BILL_NAME`, `COMPANY_NAME`) VALUES
 --
 
 CREATE TABLE `transactions` (
-  `TRANSACTION_ID` int(3),
+  `TRANSACTION_ID` int(3) AUTO_INCREMENT,
   `USERID` int(3) DEFAULT NULL,
   `TRANSACTION_TYPE` varchar(10) DEFAULT NULL,
 
@@ -205,7 +205,7 @@ INSERT INTO `transactions` (`TRANSACTION_ID`, `USERID`, `TRANSACTION_TYPE`) VALU
 --
 
 CREATE TABLE `bill_payment` (
-  `BILL_PAYMENT_ID` int(3),
+  `BILL_PAYMENT_ID` int(3) AUTO_INCREMENT,
   `TRANSACTION_ID` int(3) DEFAULT NULL,
   `BILLTYPEID` int(3) DEFAULT NULL,
   `AMOUNT` int(5) DEFAULT NULL,
@@ -236,7 +236,7 @@ INSERT INTO `bill_payment` (`BILL_PAYMENT_ID`, `TRANSACTION_ID`, `BILLTYPEID`, `
 --
 
 CREATE TABLE `money_transfer` (
-  `MT_ID` int(3) ,
+  `MT_ID` int(3) AUTO_INCREMENT,
   `TRANSACTION_ID` int(3) DEFAULT NULL,
   `SENDERID` int(3) DEFAULT NULL,
   `RECIEVERID` int(3) DEFAULT NULL,
@@ -264,7 +264,7 @@ INSERT INTO `money_transfer` (`MT_ID`, `TRANSACTION_ID`, `SENDERID`, `RECIEVERID
 --
 
 CREATE TABLE `purchases` (
-  `PURCHASEID` int(3),
+  `PURCHASEID` int(3) AUTO_INCREMENT,
   `TRANSACTIONID` int(3) DEFAULT NULL,
   `USERID` int(3) DEFAULT NULL,
   `ITEMID` int(3) DEFAULT NULL,
@@ -291,7 +291,7 @@ INSERT INTO `purchases` (`PURCHASEID`, `TRANSACTIONID`, `USERID`, `ITEMID`, `DAT
 --
 
 CREATE TABLE `withdraw_deposit` (
-  `WD_ID` int(3),
+  `WD_ID` int(3) AUTO_INCREMENT		,
   `AMOUNT` int(5) DEFAULT NULL,
   `PAYMENT_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `IS_WITHDRAW` varchar(5) DEFAULT NULL,

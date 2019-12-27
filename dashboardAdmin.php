@@ -124,7 +124,7 @@
 		                                             <span class='input-group-addon'><i class='fa fa-user'  ></i></span>
 		                                             <p type='text' class='form-control'  >" . $row["first_name"] . " " . 
 		                                             $row["last_name"] .  "  ::  " . $row["balance"] . " Rs. </p>
-		                                             <span class='input-group-addon'><i class='fa fa-remove'  ></i></span>
+		                                             <span class='input-group-addon'><a href='deleteUser.php'><i class='fa fa-remove'  ></i></a></span>
 		                                        	</div>";
 											    }
 											} else {
@@ -139,7 +139,6 @@
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 
-                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Transfer</button>
 
 
                               </div>
@@ -170,34 +169,35 @@
                               <!-- Modal body -->
                               <div class="modal-body">
                                 Enter Details
+                                <form method="post" action="addUser.php">
 
                                        <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="Enter Email" />
+                                            <input type="text" class="form-control" name="email" placeholder="Enter Email" required />
                                         </div>
                                      <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control" placeholder="Password" />
+                                            <input type="password" class="form-control" name="pass" placeholder="Password" required/>
                                        
                                       </div>
                                       <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control"  placeholder="Confirm Password" />
+                                            <input type="password" class="form-control" name="confirmPass" placeholder="Confirm Password" required/>
                                         </div>
 
                                           <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="First Name" />
+                                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required/>
                                         </div>
 
                                           <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="Last Name" />
+                                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required />
                                         </div>
 
                                          <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <input type="number" class="form-control"  placeholder="Age" />
+                                            <input type="number" class="form-control" name="age" placeholder="Age" required/>
                                         </div>
 
                                          <div class="form-group input-group">
@@ -211,15 +211,18 @@
                                                 </option>
                                             </select>
                                         </div>
+
+                                      
                               </div>
 
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Add User</button>
+                                <input type="submit" name="add" value="Add" class="btn btn-primary"> 
                               </div>
 
                             </div>
+                            </form>
                           </div>
                         </div>
 
@@ -252,7 +255,8 @@
 
                                         <?php 
 
-                                        $sql = "SELECT Transactions.transaction_id, user.first_name , user.last_name , Transactions.transaction_type FROM transactions,user  where Transactions.userid=user.userid";
+                                        $sql = "SELECT Transactions.transaction_id, user.first_name , user.last_name , Transactions.transaction_type FROM transactions,user  where Transactions.userid=user.userid
+                                        order by Transactions.transaction_id desc";
 										$result = $conn->query($sql);
 
 										if ($result->num_rows > 0) {
@@ -316,7 +320,7 @@
 											        echo "<div class='form-group input-group'>
                                              <span class='input-group-addon'><i class='fa fa-shopping-cart'  ></i></span>
                                              <p type='text' class='form-control'  >" . $row["name"] . "   $" . $row["price"] ."</p>
-                                             <span class='input-group-addon'><i class='fa fa-remove'  ></i></span>
+                                             <span class='input-group-addon'><a href='deleteItem.php'><i class='fa fa-remove'  ></i></a></span>
                                         	 </div>";
 											    }
 											} else {
@@ -361,18 +365,19 @@
                               <div class="modal-body">
                                 Enter Details
 
+                                <form action="addItem.php" method="post">
                                 <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="Enter Item Name" />
+                                            <input type="text" class="form-control" name="name" placeholder="Enter Item Name" required />
                                         </div>
                                      <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
-                                            <input type="number" class="form-control" placeholder="Price" />
+                                            <input type="number" class="form-control" name="price" placeholder="Price" required />
                                        
                                       </div>
                                       <div class="form-group input-group">
                                             <span class="input-group-addon"><i class="fa fa-file-text"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="Enter Descrsiption" />
+                                            <input type="text" class="form-control" name="description" placeholder="Enter Descrsiption" required />
                                         </div>
 
                                          <div class="form-group input-group">
@@ -385,9 +390,9 @@
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Add Item</button>
+                                <input type="submit" value="Add Item" class="btn btn-primary" >
                               </div>
-
+                            </form>
                             </div>
                           </div>
                         </div>
