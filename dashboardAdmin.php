@@ -114,18 +114,19 @@
 
                                         <?php 
 
-                                        $sql = "SELECT first_name, last_name,balance FROM user u";
+                                        $sql = "SELECT userid,first_name, last_name,balance FROM user u";
 										$result = $conn->query($sql);
 
 										if ($result->num_rows > 0) {
 											    // output data of each row
 											    while($row = $result->fetch_assoc()) {
-											        echo "<div class='form-group input-group'>
+											        echo "<form action='deleteUser.php' method='post'><div class='form-group input-group'>
+                              <input type='hidden' name=' userid' value='".  $row["userid"] ."'/>
 		                                             <span class='input-group-addon'><i class='fa fa-user'  ></i></span>
 		                                             <p type='text' class='form-control'  >" . $row["first_name"] . " " . 
 		                                             $row["last_name"] .  "  ::  " . $row["balance"] . " Rs. </p>
-		                                             <span class='input-group-addon'><a href='deleteUser.php'><i class='fa fa-remove'  ></i></a></span>
-		                                        	</div>";
+		                                             <span class='input-group-addon'><input value='X' type='submit'  /></a></span>
+		                                        	</div></form>";
 											    }
 											} else {
 											    echo "0 results";
@@ -311,17 +312,18 @@
 
                                       <?php 
 
-                                        $sql = "SELECT name, price FROM item";
+                                        $sql = "SELECT item_id,name, price FROM item";
 										$result = $conn->query($sql);
 
 										if ($result->num_rows > 0) {
 											    // output data of each row
 											    while($row = $result->fetch_assoc()) {
-											        echo "<div class='form-group input-group'>
+											        echo " <form method='post' action='deleteItem.php'><div class='form-group input-group' >
+                                            <input type='hidden' name=' item_id' value='".  $row["item_id"] ."'/>
                                              <span class='input-group-addon'><i class='fa fa-shopping-cart'  ></i></span>
                                              <p type='text' class='form-control'  >" . $row["name"] . "   $" . $row["price"] ."</p>
-                                             <span class='input-group-addon'><a href='deleteItem.php'><i class='fa fa-remove'  ></i></a></span>
-                                        	 </div>";
+                                             <span class='input-group-addon'><input  value='X' type='submit' /></span>
+                                        	 </div></form>";
 											    }
 											} else {
 											    echo "0 results";

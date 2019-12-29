@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+	-- phpMyAdmin SQL Dump
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
@@ -302,14 +302,13 @@ CREATE TABLE `withdraw_deposit` (
 
 	PRIMARY KEY (WD_ID),
 	FOREIGN KEY (TRANSACTION_ID) REFERENCES TRANSACTIONS(TRANSACTION_ID),
-	FOREIGN KEY (USERID) REFERENCES USER(USERID),
-	FOREIGN KEY (RETAILER_ID) REFERENCES USER(USERID)
+	FOREIGN KEY (USERID) REFERENCES USER(USERID)
 	
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
-INSERT into withdraw_deposit VALUES(000,3000,DEFAULT,'no','yes',503,103,105);
+INSERT into withdraw_deposit VALUES(000,3000,DEFAULT,'no','yes',503,100,105);
 
 INSERT into withdraw_deposit VALUES(001,3500,DEFAULT,'no','yes',512,109,105);
 
