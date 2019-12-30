@@ -235,21 +235,20 @@
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
                                              <select class="form-control">
-                                                <option>
-                                                    <p>Electricity</p>
-                                                </option>
-                                                <option>
-                                                    <p>Water</p>
-                                                </option>
-                                                <option>
-                                                    <p>Gas Supply</p>
-                                                </option>
-                                                <option>
-                                                    <p>Internet</p>
-                                                </option>
-                                                <option>
-                                                    <p>Telephone</p>
-                                                </option>
+                                              <?php
+                                              $sql = "SELECT distinct bill_name FROM bill_type ";
+                                              $result = $conn->query($sql);
+
+                                              if ($result->num_rows > 0) {
+                                                // output data of each row
+                                               while($row = $result->fetch_assoc()) {
+                                                  echo "<option>
+                                                        <p>". $row["bill_name"] ."</p>
+                                                          </option>" ;
+                                                }
+                                              }
+                                           
+                                                 ?>
                                             </select>
                                         </div>
                                         <div class="form-group input-group">
@@ -402,7 +401,7 @@
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Transfer</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Withdraw</button>
                               </div>
 
                             </div>
@@ -445,7 +444,7 @@
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Transfer</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Deposit</button>
                               </div>
 
                             </div>

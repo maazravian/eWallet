@@ -29,6 +29,14 @@
 		} else {
 		    
 		$newUserId = 0;
+		$sql1 = "INSERT INTO user (first_name, last_name, password,age,date_joined,balance,is_retailer) VALUES ('$first_name', '$last_name', '$pass','$age',curdate(),0,'NO');";
+
+		if(mysqli_query($conn, $sql1)){
+		    echo "user added successfully.";
+		    
+		} else{
+		    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+		}
 
 		$sql = "SELECT userid FROM user order by userid desc limit 1";
 			$result = $conn->query($sql);
@@ -36,25 +44,20 @@
 		if ($result->num_rows > 0) {
 		  
 	    while($row = $result->fetch_assoc()) {
-			$newUserId = $row["userid"] + 1;								      
+			$newUserId = $row["userid"];								      
    		 }
 		}
 		echo $newUserId;
 
-		$sql1 = "INSERT INTO user (first_name, last_name, password,age,date_joined,balance,is_retailer) VALUES ('$first_name', '$last_name', '$pass','$age',curdate(),0,'NO');";
+		
 
 		$sql2 = "	INSERT INTO contact_info ( user_id,email) VALUES ('$newUserId' , '$email' );";
 		
-		if(mysqli_query($conn, $sql1)){
-		    echo "user added successfully.";
-		    if(mysqli_query($conn, $sql2)){
+		if(mysqli_query($conn, $sql2)){
 			    echo "contact_info added successfully.";
 			} else{
 			    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 			}
-		} else{
-		    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-		}
 		
 		header('location:login.php');
 
