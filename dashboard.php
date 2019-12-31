@@ -143,7 +143,7 @@
                     <li>
                         <div class="user-img-div">
                             <img src="assets/img/user.png" class="img-thumbnail" />
-                            <a href="#" data-toggle="modal" data-target="#EditProfileModal"> <input type="button" value="Edit Profile" class="btn-info btn"></a>
+                            <a href="#" data-toggle="modal" data-target="#EditProfileModal"> <BUTTON class="btn btn-info">Edit Profile<i class="fa fa-edit fa-2x"></i></BUTTON></a>
 
                             <div class="inner-text">
                                 <?php
@@ -179,7 +179,7 @@
                                 if($row["transaction_type"]=="BILL")
                                 {
 
-                                  $sql = "SELECT max(payment_date) from bill_payment where userId = '$temp'";
+                                  $sql = "SELECT max(payment_date) from bill_payment where user_Id = '$temp'";
                                   $result = $conn->query($sql);
                                   if($row = $result->fetch_assoc())
                                   {
@@ -320,22 +320,23 @@
                                 <h4 class="modal-title">Bill Payment</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                               </div>
-
+                              <form action="billPayment.php" method="post">
                               <!-- Modal body -->
                               <div class="modal-body">
                                 Enter Details
 
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <select class="form-control">
-                                              <?php
+                                             <input name="" type="hidden">
+                                             <select class="form-control" name="selected_type" id="selected_type"> 
+                                              <?php 
                                               $sql = "SELECT distinct bill_name FROM bill_type ";
                                               $result = $conn->query($sql);
 
                                               if ($result->num_rows > 0) {
                                                 // output data of each row
                                                while($row = $result->fetch_assoc()) {
-                                                  echo "<option>
+                                                  echo "<option >
                                                         <p>". $row["bill_name"] ."</p>
                                                           </option>" ;
                                                 }
@@ -343,20 +344,27 @@
                                            
                                                  ?>
                                             </select>
+                                          </input>
+
                                         </div>
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
-                                             <input type="number" class="form-control"  placeholder="Enter Bill ID" />
+                                             <input type="number" class="form-control" name="billid" placeholder="Enter Bill ID" required maxlength="3" />
+                                        </div>
+                                        <div class="form-group input-group">
+                                             <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
+                                             <input type="number" class="form-control" name="amount"  placeholder="Enter Amount" required="" />
                                         </div>
                               </div>
 
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Pay Bill</button>
+                               <input type="submit" name="" value="Pay Bill" class="btn btn-primary">
                               </div>
 
                             </div>
+                             <form>
                           </div>
                         </div>
 
@@ -428,18 +436,47 @@
                                         <?php
 
                                   $userid = $_SESSION["userId"];
-                                $sql = "SELECT transaction_type FROM transactions where userid='$userid'";
+                                $sql = "SELECT transaction_type,transaction_id FROM transactions where userid='$userid' order by transaction_id desc";
                   
                                $result = $conn->query($sql);
 
                               if ($result->num_rows > 0) {
                                   // output data of each row
-                                 while($row = $result->fetch_assoc()) {
+
+                                 while($row1 = $result->fetch_assoc()){
+                                  
+                                   if($row1["transaction_type"]=="BILL")
+                                   {
+                                        $tempCat = "Bill Payment";
+                                  
+                                   }
+                                   else if($row1["transaction_type"]=="MONEYT")
+                                   {
+                                        $tempCat = "Money Transfer";
+                                       
+                                   }
+                                   else if($row1["transaction_type"]=="WITHDRAW")
+                                   {
+                                    $tempCat="Withdraw money";
+                                   }
+                                   else if($row1["transaction_type"]=="DEPOSIT")
+                                   {
+                                    $tempCat="Deposit money";
+                                   }
+                                   else if($row1["transaction_type"]=="PURCHASE")
+                                    $tempCat="Purchase";
+
                                   echo "<div class='form-group input-group'>
                                              <span class='input-group-addon'><i class='fa fa-history'  ></i></span>
-                                             <p type='text' class='form-control'  > ". $row["transaction_type"]. "</p>
-                                        </div>";
-                               }
+                                             <p type='text' class='form-control'  > Transaction ID : ". 
+                                                 $row1["transaction_id"]
+                                             . " , Transaction Type : ". $tempCat . " 
+                                                </p>
+                                              </div>";
+
+
+                               }        
+                               
                              }
                                else
                                 echo "No History....";
