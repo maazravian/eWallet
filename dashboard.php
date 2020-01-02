@@ -495,6 +495,8 @@
                             </div>
                           </div>
                         </div>
+                      </form>
+                   
 
                     <div class="col-md-4">
                         <div class="main-box  btn-primary">
@@ -514,27 +516,27 @@
                                 <h4 class="modal-title">Withdraw Money</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                               </div>
-
+                              <form action="withdrawMoney.php" method="post">
                               <!-- Modal body -->
                               <div class="modal-body">
                                 Enter Details
 
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <input type="text" class="form-control"  placeholder="Enter retailer's Email" />
+                                             <input type="text" class="form-control" name="email" placeholder="Enter retailer's Email" required />
                                         </div>
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
-                                             <input type="number" class="form-control"  placeholder="Enter Amount" />
+                                             <input type="number" class="form-control" name="amount" placeholder="Enter Amount" required />
                                         </div>
                               </div>
 
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Withdraw</button>
+                                <input type="submit" name="" value="Withdraw" class="btn btn-primary">
                               </div>
-
+                              </form>
                             </div>
                           </div>
                         </div>
@@ -557,32 +559,33 @@
                                 <h4 class="modal-title">Deposit Money</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                               </div>
-
+                              <form action="depositMoney.php" method="post">
                               <!-- Modal body -->
                               <div class="modal-body">
                                 Enter Details
 
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                             <input type="text" class="form-control"  placeholder="Enter Retailer's Email" />
+                                             <input type="text" class="form-control" name="email" placeholder="Enter Retailer's Email" required />
                                         </div>
                                         <div class="form-group input-group">
                                              <span class="input-group-addon"><i class="fa fa-money"  ></i></span>
-                                             <input type="number" class="form-control"  placeholder="Enter Amount" />
+                                             <input type="number" class="form-control" name="amount" placeholder="Enter Amount" 
+                                             required />
                                         </div>
                               </div>
 
                               <!-- Modal footer -->
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Deposit</button>
+                                <input type="submit" name="" value="Deposit " class="btn btn-primary">
                               </div>
-
+                              </form>
                             </div>
                           </div>
                         </div>
 
-                    <div class="col-md-4">
+                     <div class="col-md-4">
                         <div class="main-box btn-success">
                             <a href="store.php">
                                 <i class="fa fa-shopping-cart fa-5x"></i>

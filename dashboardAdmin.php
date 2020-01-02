@@ -114,7 +114,7 @@
 
                                         <?php 
 
-                                        $sql = "SELECT userid,first_name, last_name,balance FROM user u";
+                                        $sql = "SELECT user.userid,user.first_name, user.last_name,user.balance,contact_info.email FROM user ,contact_info where contact_info.user_id=user.userid";
 										$result = $conn->query($sql);
 
 										if ($result->num_rows > 0) {
@@ -124,7 +124,7 @@
                               <input type='hidden' name=' userid' value='".  $row["userid"] ."'/>
 		                                             <span class='input-group-addon'><i class='fa fa-user'  ></i></span>
 		                                             <p type='text' class='form-control'  >" . $row["first_name"] . " " . 
-		                                             $row["last_name"] .  "  ::  " . $row["balance"] . " Rs. </p>
+		                                             $row["last_name"] .  "  ::  " . $row["balance"] . " Rs. " . $row["email"].  "   </p>
 		                                             <span class='input-group-addon'><input value='X' type='submit'  /></a></span>
 		                                        	</div></form>";
 											    }
@@ -201,17 +201,7 @@
                                             <input type="number" class="form-control" name="age" placeholder="Age" required/>
                                         </div>
 
-                                         <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <select class="form-control">
-                                                <option>
-                                                    <p>I am not Retailer</p>
-                                                </option>
-                                                <option>
-                                                    <p>I am a Retailer</p>
-                                                </option>
-                                            </select>
-                                        </div>
+                                         
 
                                       
                               </div>

@@ -64,17 +64,7 @@
                                             <input type="number" class="form-control" name="age" placeholder="Age" required />
                                         </div>
 
-                                         <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"  ></i></span>
-                                            <select class="form-control">
-                                                <option>
-                                                    <p>I am not Retailer</p>
-                                                </option>
-                                                <option>
-                                                    <p>I am a Retailer</p>
-                                                </option>
-                                            </select>
-                                        </div>
+                                         
 
                                         
                                    
