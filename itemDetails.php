@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     
-    <title>eWallet - Store</title>
+    <title>eWallet - Item</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -152,50 +152,57 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">
-                <div class="row">
+                
                 	
 
-                        <?php 
+                      <b><h4>ITEM WILL BE DELIVERED TO YOUR GIVEN ADDRESS IF YOU CLICK BUY</h4></b>
 
-                          $sql = "SELECT item_id,name,description,price from item";
-                                        $result = $conn->query($sql);
 
-                                        if ($result->num_rows > 0) {
-                                                // output data of each row
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo "
-                                                    <form action='itemDetails.php' method='post'>
-                                                    <div class='col-md-4'>
+				              <?php  
+                        $itemid=$_REQUEST["itemid"];
+                        
+
+                        $userid = $_SESSION["userId"];
+                                $sql = "SELECT item_id,name,description,price  FROM item where item_id='$itemid'";
+                  
+                               $result = $conn->query($sql);
+
+                              if ($result->num_rows > 0) {
+                                  // output data of each row
+                                 $row = $result->fetch_assoc();
+                                     echo "<style>
+                                      .container {
+                                          width: 80%;
+                                          margin: 0 auto;
+                                          padding: 20px;
+                                          background: #f0e68c;
+                                      }
+                                  </style><div class='col-lg-7' class='container'>
+                                                    <form method='post' action='buyItem.php'>
                                                     <div class='main-box btn-primary'>
                                                     
                                                     <img class='img-responsive' src='assets/items/item1.jpg'>
                                                     <h5>". $row["name"] ."</h5>
+                                                    <p>Item id : ". $row["item_id"] . "</p>
                                                     <p>". $row["description"] . "</p>
                                                     <h5>" .  $row["price"] ."  Rs</h5>
-                                                    <input type='submit' class='btn btn-success' value='Open Details'/>
+                                                    <input type='hidden' name='itemid' value='".$row["item_id"]."'>
+                                                    <input type='hidden' name='price' value='".$row["price"]."'>
+
+                                                    <input type='submit' class='btn btn-success' value='Buy'/>
                                                     </div>
-                                                    </div> 
-
-                                                    
-                                                    <input type='hidden' value='".$row["item_id"]."' name='itemid'/>
                                                     </form>
-
-
+                                                    </div> 
                                                       ";
-                                               }
-                                          } else {
-                                            echo "0 results";
-                                        }
-
-                         ?>
-                    
+                                   
+                                 }
 
 
-				</div>
 
-                <!-- /. ROW  -->
 
-                <!-- The Modal -->
+                      ?>
+
+                
                        
 
                 

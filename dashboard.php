@@ -50,7 +50,6 @@
                                 $currentAge;
                                 $currentPassword;
                                 $currentAddress;
-                                $currentPhone;
                                 $sql = "SELECT user.first_name, user.last_name,user.age,user.password,contact_info.address,contact_info.phone_no FROM user,contact_info where user.userid='$userid'
                                   and user.userid = contact_info.user_id";
                   
@@ -65,7 +64,6 @@
                                   $currentPassword=$row["password"];
                                   $currentAddress=$row["address"];
                                   $currentPhone=$row["phone_no"];
-
                                   }
                               }
                                 ?>
@@ -233,6 +231,10 @@
                                }
 
                                   ?>
+
+                                </small>
+                                <small>
+                                     
 
                                 </small>
                             </div>
@@ -437,7 +439,17 @@
                                         <?php
 
                                   $userid = $_SESSION["userId"];
-                                $sql = "SELECT transaction_type,transaction_id FROM transactions where userid='$userid' order by transaction_id desc";
+                                $sql = "SELECT transactions.TRANSACTION_TYPE,bill_payment.transaction_id,bill_payment.payment_date,bill_payment.amount from bill_payment,transactions where bill_payment.user_id = '$userid' and transactions.transaction_id=bill_payment.TRANSACTION_ID
+                                  UNION
+                                  SELECT transactions.TRANSACTION_TYPE,money_transfer.TRANSACTION_id,money_transfer.transfer_date,money_transfer.amount from money_transfer,transactions WHERE money_transfer.senderid='$userid'
+                                  and transactions.TRANSACTION_ID=money_transfer.TRANSACTION_ID
+                                  UNION 
+                                  SELECT transactions.TRANSACTION_TYPE,withdraw_deposit.transaction_id,withdraw_deposit.payment_date,withdraw_deposit.amount from withdraw_deposit,transactions where withdraw_deposit.userid='$userid'
+                                  and transactions.TRANSACTION_ID=withdraw_deposit.TRANSACTION_ID
+                                  UNION 
+                                  SELECT transactions.TRANSACTION_TYPE,purchases.transactionid,purchases.price,purchases.date_purchased from purchases,transactions where purchases.userid='$userid' and transactions.TRANSACTION_ID=purchases.TRANSACTIONID
+
+                                  order by transaction_id desc";
                   
                                $result = $conn->query($sql);
 
@@ -446,33 +458,13 @@
 
                                  while($row1 = $result->fetch_assoc()){
                                   
-                                   if($row1["transaction_type"]=="BILL")
-                                   {
-                                        $tempCat = "Bill Payment";
-                                  
-                                   }
-                                   else if($row1["transaction_type"]=="MONEYT")
-                                   {
-                                        $tempCat = "Money Transfer";
-                                       
-                                   }
-                                   else if($row1["transaction_type"]=="WITHDRAW")
-                                   {
-                                    $tempCat="Withdraw money";
-                                   }
-                                   else if($row1["transaction_type"]=="DEPOSIT")
-                                   {
-                                    $tempCat="Deposit money";
-                                   }
-                                   else if($row1["transaction_type"]=="PURCHASE")
-                                    $tempCat="Purchase";
 
                                   echo "<div class='form-group input-group'>
                                              <span class='input-group-addon'><i class='fa fa-history'  ></i></span>
                                              <p type='text' class='form-control'  > Transaction ID : ". 
                                                  $row1["transaction_id"]
-                                             . " , Transaction Type : ". $tempCat . " 
-                                                </p>
+                                             . "  : ". $row1["TRANSACTION_TYPE"] . " 
+                                             : amount : ".$row1["amount"]." Time :  ".$row1["payment_date"]."</p>
                                               </div>";
 
 

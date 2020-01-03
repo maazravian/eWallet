@@ -22,7 +22,7 @@ $userid = $_SESSION["userId"];
 			$Email = $row["user_id"];		
 
 
-			$sql = "SELECT balance FROM user where userid = '$userid'";
+			$sql = "SELECT balance FROM user where userid = '$Email'";
 			$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
