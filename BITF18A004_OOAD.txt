@@ -1,0 +1,105 @@
+public class Payment { 
+private Money amount; 
+public Payment( Money cashTendered ){ amount = cashTendered; } 
+public Money getAmount() { return amount; } 
+} 
+public class ProductCatalog { 
+private Map productSpecifications = new HashMap();
+public ProductCatalog() 
+{ // sample data ItemID idl = new ItemID( 100 ); 
+ItemID id2 = new ItemID( 200 ); 
+Money price = new Money( 3 ); 
+ProductSpecification ps; ps = new ProductSpecification( idl, price, "product 1" ); 
+productSpecifications.put( idl, ps ); 
+ps = new ProductSpecification( id2, price, "product 2" ); 
+ProductSpecifications.put( id2, ps ); } 
+public ProductSpecification getSpecification( ItemID id ) 
+  {
+ return (ProductSpecification)productSpecifications.get( id ); 
+  }
+} 
+public class Register 
+{ private ProductCatalog catalog;
+ private Sale sale; public Register( ProductCatalog catalog )
+ { 
+this.catalog = catalog; 
+}
+ public void endSaleO 
+{ 
+sale.becomeComplete();
+ } 
+public void enterltem( ItemID id, int quantity ) 
+{
+ ProductSpecification spec = catalog.getSpecification( id );
+ sale.makeLineItem( spec, quantity ); 
+}
+ public void makeNewSale() { sale = new Sale(); 
+} public void makePayment( Money cashTendered ) 
+{
+ sale.makePayment( cashTendered ); 
+} 
+} 
+public class ProductSpecification { 
+private ItemID id; private Money price; 
+private String description; 
+public ProductSpecification ( ItemID id. Money price. String description ) 
+{ 
+this.id = id; this.price = price; this.description = description; 
+} 
+public ItemID getltemlDO 
+{ 
+return id;
+} 
+public Money getPrice() 
+{ 
+return price; 
+}
+ public String getDescription() {
+ return description; 
+} 
+} 
+public class Sale { 
+private List lineltems = new ArrayListO; private Date date = new Date(); 
+private boolean isComplete = false; 
+private Payment payment; public Money getBalanceO { 
+return payment.getAmount().minus( getTotal() );
+ } 
+public void becomeComplete()
+ { 
+isComplete = true; 
+} 
+public boolean isComplete() {
+ return isComplete;
+ } 
+public void makeLineltem ( ProductSpecification spec, int quantity ) 
+{
+ lineltems.add( new SalesLineltem( spec, quantity ) ); 
+} 
+public Money getTotal() 
+{ Money total = new MoneyO; Iterator i = lineltems.iterator( ) ; while ( i.hasNextO )
+ { SalesLineltem sli = (SalesLineltem) i.nextO; total.add( sli.getSubtotal() ); 
+} 
+return total;
+ }
+public void makePayment( Money cashTendered ) { 
+payment = new Payment( cashTendered );
+ }
+ }   
+public class SalesLineltem {
+ private int quantity; 
+private ProductSpecification productSpec; 
+public SalesLineltem (ProductSpecification spec, int quantity ) {
+ this.productSpec = spec; this.quantity = quantity; 
+} 
+public Money getSubtotal() 
+{ 
+return productSpec.getPrice().times( quantity ); 
+}
+ }
+public class Store {
+ private ProductCatalog catalog = new ProductCatalog(); 
+private Register register = new Register( catalog ); 
+public Register getRegister() {
+ return register;
+ } 
+} 
